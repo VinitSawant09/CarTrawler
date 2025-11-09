@@ -44,11 +44,12 @@ public class CarUtil {
     }
 
     public static boolean isNotAboveMedianWithFullFuel(CarResult car, double medianValue) {
-        if(car==null){
+        if (car == null) {
             return false;
         }
-        return !(car.rentalCost() > medianValue)
-                || car.fuelPolicy() != CarResult.FuelPolicy.FULLFULL;
+        boolean isAboveMedian = car.rentalCost() > medianValue;
+        boolean isFullFuel = car.fuelPolicy() == CarResult.FuelPolicy.FULLFULL;
+        return !(isAboveMedian && isFullFuel);
     }
 
     public static Comparator<CarResult> getCarResultComparator() {
